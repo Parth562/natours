@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const hpp = require('hpp');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 
 const tourRouter = require('./routes/tourRoutes.js');
 const userRouter = require('./routes/userRoutes.js');
@@ -37,6 +38,8 @@ app.use(morgan('dev'));
 
 // PREVENT PARAMETER POLLUTION
 app.use(hpp());
+
+app.use(compression());
 
 app.use('/', viewRouter);
 app.use('/api/v1/tours', tourRouter);
