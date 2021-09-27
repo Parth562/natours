@@ -17,12 +17,13 @@ const globalErrorHandler = require('./controllers/errorController');
 //start express engine
 const app = express();
 
-app.use(cors());
-
 app.set('views', './views');
 app.set('view engine', 'pug');
 
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(cors());
+app.options('*', cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
