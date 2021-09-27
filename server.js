@@ -17,7 +17,7 @@ mongoose.connect(DB, {}).then((con) => {
 });
 
 const server = app.listen(process.env.PORT || 3000, () => {
-    console.log(`server runing at port ${port}...`);
+    console.log('server runing at port who knows...');
 });
 
 process.on('unhandledRejection', (err) => {
