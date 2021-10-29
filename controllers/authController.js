@@ -39,14 +39,15 @@ const createSendToken = (user, statusCode, res) => {
 exports.signup = catchAsync(async (req, res, next) => {
     const newUser = await User.create(req.body);
 
-    const token = signToken(newUser._id);
-    res.status(201).json({
-        status: 'sucess',
-        token,
-        data: {
-            newUser,
-        },
-    });
+    createSendToken(newUser, 201, res);
+    // const token = signToken(newUser._id);
+    // res.status(201).json({
+    //     status: 'sucess',
+    //     token,
+    //     data: {
+    //         newUser,
+    //     },
+    // });
 });
 
 exports.signin = catchAsync(async (req, res, next) => {

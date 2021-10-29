@@ -18,7 +18,7 @@ export const login = async (email, password) => {
             }, 1500);
         }
     } catch (err) {
-        ShowAlert('error', error.response.data.message);
+        showAlert('error', err.response.data.message);
     }
 };
 
@@ -33,5 +33,28 @@ export const logout = async () => {
         }
     } catch (err) {
         showAlert('error', 'Error loggin out!!');
+    }
+};
+
+export const signUp = async (name, email, password, passwordConfirm) => {
+    try {
+        const response = await axios({
+            method: 'POST',
+            url: '/api/v1/users/signup',
+            data: {
+                name,
+                email,
+                password,
+                passwordConfirm,
+            },
+        });
+        if (response.data.status === 'success') {
+            showAlert('success', 'signed up successfully');
+            window.setTimeout(() => {
+                location.assign('/');
+            }, 1500);
+        }
+    } catch (err) {
+        showAlert('error', err.response.data.message);
     }
 };

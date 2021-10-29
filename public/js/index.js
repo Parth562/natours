@@ -1,9 +1,10 @@
 import '@babel/polyfill';
-import { login, logout } from './login.js';
+import { login, logout, signUp } from './login.js';
 import { updateSetting } from './updateSetting.js';
 import { bookTour } from './stripe.js';
 
 const loginForm = document.querySelector('.form--login');
+const signupForm = document.querySelector('.form--signup');
 const logoutBtn = document.querySelector('.nav__el--logout');
 const updateUserForm = document.querySelector('.form-user-data');
 const passwordForm = document.querySelector('.form-user-password');
@@ -15,6 +16,17 @@ if (loginForm) {
         const password = document.getElementById('password').value;
         const email = document.getElementById('email').value;
         login(email, password);
+    });
+}
+
+if (signupForm) {
+    signupForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('name').value;
+        const password = document.getElementById('password').value;
+        const email = document.getElementById('email').value;
+        const passwordConfirm = document.getElementById('passwordConfirm').value;
+        signUp(name, email, password, passwordConfirm);
     });
 }
 
